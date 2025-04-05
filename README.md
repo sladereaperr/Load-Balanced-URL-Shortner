@@ -21,8 +21,8 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 1. Clone this repository
 
    ```bash
-   git clone https://github.com/your-username/url-shortener.git
-   cd url-shortener
+   git clone https://github.com/sladereaperr/Load-Balanced-URL-Shortner.git
+   cd Load-Balanced-URL-Shortner
    ```
 
 2. `docker build -t docker_username/url-shortener:latest .`
