@@ -7,7 +7,8 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 - Shorten long URLs to easy-to-share short links
 - Persistent storage with PostgreSQL
 - Containerized with Docker
-- Ready for Kubernetes deployment
+- Kubernetes manifests for production deployment
+- Secure configuration using Secrets and ConfigMaps
 
 ## Local Development
 
