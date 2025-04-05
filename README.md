@@ -50,7 +50,7 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 
 ### Testing the project
 
-## Using CURL
+#### #Using CURL
 
 - To See all the urls stored in the DB:
   `curl -X GET "http://<EXTERNAL-IP>/urls/"`
@@ -61,3 +61,10 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 
 - To delete a url:
   `curl -X GET "http://<EXTERNAL-IP>/delete/<ShortCode>`
+
+#### Using Frontend
+
+- Run the following in a terminal window and don't terminate:
+  `minikube service url-shortener-service --url`
+
+- Access the URL mentioned in the terminal after running the previous command and perform the required operations
