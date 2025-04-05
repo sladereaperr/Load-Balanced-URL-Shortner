@@ -13,4 +13,4 @@ DB_NAME = os.getenv("DB_NAME", "urlshortener")
 DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # App settings
-BASE_URL = os.getenv("BASE_URL", "http://localhost:8000")
+BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1")

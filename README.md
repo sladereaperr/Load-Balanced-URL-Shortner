@@ -7,7 +7,6 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 - Shorten long URLs to easy-to-share short links
 - Persistent storage with PostgreSQL
 - Containerized with Docker
-- Health check endpoint
 - Ready for Kubernetes deployment
 
 ## Local Development
@@ -16,72 +15,49 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 
 - Docker and Docker Compose
 
-### Running Locally
+### Running Locally Steps
 
 1. Clone this repository
+
    ```bash
    git clone https://github.com/your-username/url-shortener.git
    cd url-shortener
    ```
 
-### Start the application using Docker Compose:
+2. `docker build -t docker_username/url-shortener:latest .`
 
-- docker-compose up
+3. `docker push docker_username/url-shortener:latest`
 
-The service will be available at http://localhost:8000.
+4. `minikube start`
 
-## API Endpoints
+5. ```
+   kubectl apply -f k8s/app/url-shortener-deployment.yaml
+   kubectl apply -f k8s/app/url-shortener-service.yaml
+   kubectl apply -f k8s/db/redis-deployment.yaml
+   kubectl apply -f k8s/db/redis-service.yaml
+   kubectl apply -f k8s/config/configmap.yaml
+   kubectl apply -f k8s/config/secret.yaml
+   ```
+6. Run the following in a new terminal and keep it running
+   `minikube tunnel`
 
-### Shorten URL
+7. Make Sure all the pods are running:
+   `kubectl get pods`
 
-URL: /shorten/
+8. Get the <EXTERNAL-IP> using the following command:
+   `kubectl get svc url-shortener-service`
+   Note: We will get the ip only after running `minikube tunnel` in another terminal, otherwise it will say <pending>
 
-Method: POST
+### Testing the project
 
-Response:
+## Using CURL
 
-{
-"original_url": "https://long-url-to-shorten.com/path",
-"short_url": "AbCdEf",
-"short_url_link": "http://localhost:8000/AbCdEf"
-}
+- To See all the urls stored in the DB:
+  `curl -X GET "http://<EXTERNAL-IP>/urls/"`
 
-### Access Short URL
+- To get a shorten url to website:
+  `curl -X POST "http://<EXTERNAL-IP>/shorten/" -H "Content-Type: application/json" -d '{"url": "https://example.com"}'`
+  Note: Replace the "<EXTERNAL-IP>" with the <EXTERNAL-IP> we got before.
 
-URL: /{short_url}
-
-Method: GET
-
-Response: Redirects to the original URL.
-
-### Get All Shortened URLs
-
-URL: /urls/
-
-Method: GET
-
-Response: Returns a list of all shortened URLs.
-
-### Delete Short URL
-
-URL: /delete/{short_url}
-
-Method: DELETE
-
-Response: Deletes the shortened URL.
-{
-"message": "URL with short URL AbCdEf has been deleted successfully"
-}
-
-### Update Short URL
-
-URL: /update/{short_url}
-
-Method: PUT
-
-Response:
-{
-"original_url": "https://new-url.com/path",
-"short_url": "AbCdEf",
-"short_url_link": "http://localhost:8000/AbCdEf"
-}
+- To delete a url:
+  `curl -X GET "http://<EXTERNAL-IP>/delete/<ShortCode>`
