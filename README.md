@@ -50,7 +50,7 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 
 ### Testing the project
 
-#### #Using CURL
+#### Using CURL
 
 - To See all the urls stored in the DB:
   `curl -X GET "http://<EXTERNAL-IP>/urls/"`
