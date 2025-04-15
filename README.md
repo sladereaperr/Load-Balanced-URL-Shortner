@@ -34,8 +34,9 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 5. ```
    kubectl apply -f k8s/app/url-shortener-deployment.yaml
    kubectl apply -f k8s/app/url-shortener-service.yaml
-   kubectl apply -f k8s/db/redis-deployment.yaml
-   kubectl apply -f k8s/db/redis-service.yaml
+   kubectl apply -f k8s/db/postgres-deployment.yaml
+   kubectl apply -f k8s/db/postgres-service.yaml
+   kubectl apply -f k8s/db/postgres-pvc.yaml
    kubectl apply -f k8s/config/configmap.yaml
    kubectl apply -f k8s/config/secret.yaml
    ```
