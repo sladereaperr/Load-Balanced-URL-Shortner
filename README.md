@@ -46,9 +46,9 @@ A containerized URL shortener service built with FastAPI and PostgreSQL.
 7. Make Sure all the pods are running:
    `kubectl get pods`
 
-8. Get the <EXTERNAL-IP> using the following command:
+8. Get the EXTERNAL-IP using the following command:
    `kubectl get svc url-shortener-service`
-   Note: We will get the ip only after running `minikube tunnel` in another terminal, otherwise it will say <pending>
+   Note: We will get the ip only after running `minikube tunnel` in another terminal, otherwise it will say pending
 
 ### Testing the project
 
